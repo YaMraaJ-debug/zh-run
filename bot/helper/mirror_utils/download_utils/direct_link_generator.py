@@ -473,8 +473,7 @@ def terabox(url) -> str:
     try:
         jar = MozillaCookieJar('terabox.txt')
         jar.load()
-        cookie_string = ''
-        for cookie in jar: cookie_string += f'{cookie.name}={cookie.value}; '
+        cookie_string = ''.join(f'{cookie.name}={cookie.value}; ' for cookie in jar)
         session.cookies.update(jar)
         res = session.request('GET', url)
         key = res.url.split('?surl=')[-1]

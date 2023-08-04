@@ -132,7 +132,10 @@ async def broadcast(_, message):
             await editMessage(pls_wait, status.format(**locals()))
             updater = time()
     bc_cache[bc_hash] = bc_msgs
-    await editMessage(pls_wait, status.format(**locals()) + f"\n\n<b>Elapsed Time:</b> <code>{get_readable_time(time() - start_time)}</code>\n<b>Broadcast ID:</b> <code>{bc_hash}</code>")
+    await editMessage(
+        pls_wait,
+        f"{status.format(**locals())}\n\n<b>Elapsed Time:</b> <code>{get_readable_time(time() - start_time)}</code>\n<b>Broadcast ID:</b> <code>{bc_hash}</code>",
+    )
         
         
 bot.add_handler(MessageHandler(broadcast, filters=command(BotCommands.BroadcastCommand) & CustomFilters.sudo))
