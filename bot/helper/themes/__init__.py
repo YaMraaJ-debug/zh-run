@@ -5,10 +5,11 @@ from random import choice as rchoice
 from bot import config_dict, LOGGER
 from bot.helper.themes import skull
 
-AVL_THEMES = {}
-for theme in listdir('bot/helper/themes'):
-    if theme.startswith('skull_') and theme.endswith('.py'):
-        AVL_THEMES[theme[5:-3]] = import_module(f'bot.helper.themes.{theme[:-3]}')
+AVL_THEMES = {
+    theme[5:-3]: import_module(f'bot.helper.themes.{theme[:-3]}')
+    for theme in listdir('bot/helper/themes')
+    if theme.startswith('skull_') and theme.endswith('.py')
+}
 
 def BotTheme(var_name, **format_vars):
     text = None

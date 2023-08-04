@@ -337,8 +337,10 @@ Timeout: 60 sec
             buttons.ibutton("Enable Media Group", f"userset {user_id} mgroup")
         buttons.ibutton("Back", f"userset {user_id} back")
         buttons.ibutton("Close", f"userset {user_id} close")
-        __msg = "Send Leech split size don't add unit, the default unit is <b>GB</b>\n"
-        __msg += "\nExamples:\n4 for 4GB\n0.5 for 512MB\n\nTimeout: 60 sec"
+        __msg = (
+            "Send Leech split size don't add unit, the default unit is <b>GB</b>\n"
+            + "\nExamples:\n4 for 4GB\n0.5 for 512MB\n\nTimeout: 60 sec"
+        )
         await editMessage(message, __msg, buttons.build_menu(1))
         pfunc = partial(leech_split_size, pre_event=query)
         await event_handler(client, query, pfunc)
@@ -422,7 +424,7 @@ Check all available formatting options <a href="https://core.telegram.org/bots/a
             buttons.ibutton("Remove USER DUMP",f"userset {user_id} rudump")
         buttons.ibutton("Back", f"userset {user_id} back")
         buttons.ibutton("Close", f"userset {user_id} close")
-        udmsg = f'''
+        udmsg = '''
 Send USER DUMP ID(Ex: -100*******69).
 
 Note: Make sure to add this bot in that location as Admin.
@@ -446,7 +448,7 @@ Timeout: 60 sec
             buttons.ibutton("Remove Leech Unwanted",f"userset {user_id} rlremname")
         buttons.ibutton("Back", f"userset {user_id} back")
         buttons.ibutton("Close", f"userset {user_id} close")
-        rmsg = f'''
+        rmsg = '''
 <b>Send Leech Unwanted</b>
 
 Examples: <code>mltb|jmdkh|wzml</code>

@@ -147,7 +147,7 @@ def get_readable_message():
         if download.status() not in [MirrorStatus.STATUS_SEEDING, MirrorStatus.STATUS_PAUSED,
                                      MirrorStatus.STATUS_QUEUEDL, MirrorStatus.STATUS_QUEUEUP]:
 
-            
+
             msg += f"\n╭ {get_progress_bar_string(download.progress())} » {download.progress()}"
             msg += f"\n├ {download.speed()}"
             msg += f"\n├ <code>Done     </code>» {download.processed_bytes()} of {download.size()}"
@@ -205,7 +205,10 @@ def get_readable_message():
         speed_in_bytes_per_second = convert_speed_to_bytes_per_second(spd)
         if tstatus == MirrorStatus.STATUS_DOWNLOADING:
             dl_speed += speed_in_bytes_per_second
-        elif tstatus == MirrorStatus.STATUS_UPLOADING or tstatus == MirrorStatus.STATUS_SEEDING:
+        elif tstatus in [
+            MirrorStatus.STATUS_UPLOADING,
+            MirrorStatus.STATUS_SEEDING,
+        ]:
             up_speed += speed_in_bytes_per_second
 
 
@@ -222,7 +225,7 @@ def get_readable_message():
         buttons.ibutton("⫸", "status nex")
         button = buttons.build_menu(3)
 
-    msg += f"<b>___________<a href=https://t.me/TomenMain</a>Tomen</a>_____________</b>"
+    msg += "<b>___________<a href=https://t.me/TomenMain</a>Tomen</a>_____________</b>"
     msg += f"\n╭<b>DL</b>: <code>{get_readable_file_size(dl_speed)}/s</code>"
     msg += f"\n╰<b>UL</b>: <code>{get_readable_file_size(up_speed)}/s</code>"
     remaining_time = 86400 - (time() - botStartTime)
